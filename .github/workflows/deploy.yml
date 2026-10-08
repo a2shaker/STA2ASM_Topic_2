@@ -27,6 +27,8 @@ jobs:
           packages: |
             any::shinylive
             any::rcmdcheck
+            any::plotly
+
 
       - name: Export App using Shinylive
         run: |
