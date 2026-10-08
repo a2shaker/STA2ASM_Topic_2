@@ -3,4 +3,5 @@ Title: STA2ASM Topic 2 App
 Version: 0.0.1
 Description: A serverless Shinylive app.
 Imports:
-    shiny, plotly
+    shiny,
+    plotly
