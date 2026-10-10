@@ -357,58 +357,71 @@ server <- function(input, output, session) {
     
     {
       
-      original_y <- max(fx) * 0.72
+      if (a != 1 || b != 0) {
+      # Stagger annotations when the original and transformed
+      # distributions have the same spread, so the labels do not overlap.
+      if (abs(a) == 1) {
+        original_y <- max(fx) * 0.78
+      } else {
+        original_y <- max(fx) * 0.72
+      }
       
-      arrows(
-        ref_x[1], original_y,
-        ref_x[2], original_y,
-        code = 3,
-        angle = 20,
-        length = 0.06,
-        col = original_col,
-        lwd = 1.5
-      )
+        arrows(
+          ref_x[1], original_y,
+          ref_x[2], original_y,
+          code = 3,
+          angle = 20,
+          length = 0.06,
+          col = original_col,
+          lwd = 1.5
+        )
       
-      text(
-        x = mean(c(ref_x[1], ref_x[2])),
-        y = original_y + max(fx) * 0.07,
-        labels = paste0(
-          "Distance from mean of X = ",
-          fmt(sigma_x, 1)
-        ),
-        col = original_col,
-        font = 2,
-        cex = 0.82
-      )
+        text(
+          x = mean(c(ref_x[1], ref_x[2])),
+          y = original_y + max(fx) * 0.07,
+          labels = paste0(
+            "Distance from mean of X = ",
+            fmt(sigma_x, 1)
+          ),
+          col = original_col,
+          font = 2,
+          cex = 0.82
+        )
       
-      transformed_left <- min(ref_y[1], ref_y[2])
-      transformed_right <- max(ref_y[1], ref_y[2])
+        transformed_left <- min(ref_y[1], ref_y[2])
+        transformed_right <- max(ref_y[1], ref_y[2])
       
-      transformed_y <- max(fy) * 0.72
+        if (abs(a) == 1) {
+        transformed_y <- max(fy) * 0.62
+      } else {
+        transformed_y <- max(fy) * 0.72
+      }
       
-      arrows(
-        transformed_left, transformed_y,
-        transformed_right, transformed_y,
-        code = 3,
-        angle = 20,
-        length = 0.06,
-        col = transformed_col,
-        lwd = 1.5
-      )
+        arrows(
+          transformed_left, transformed_y,
+          transformed_right, transformed_y,
+          code = 3,
+          angle = 20,
+          length = 0.06,
+          col = transformed_col,
+          lwd = 1.5
+        )
       
-      text(
-        x = mean(c(transformed_left, transformed_right)),
-        y = transformed_y + max(fy) * 0.07,
-        labels = paste0(
-          "Distance from mean of aX + b = ",
-          fmt(abs(a) * sigma_x, 1)
-        ),
-        col = transformed_col,
-        font = 2,
-        cex = 0.82
-      )
-    }
+        text(
+          x = mean(c(transformed_left, transformed_right)),
+          y = transformed_y + max(fy) * 0.07,
+          labels = paste0(
+            "Distance from mean of aX + b = ",
+            fmt(abs(a) * sigma_x, 1)
+          ),
+          col = transformed_col,
+          font = 2,
+          cex = 0.82
+        )
+      }
     
+    }
+
     legend(
       "topright",
       legend = c(
