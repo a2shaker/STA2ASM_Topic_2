@@ -355,7 +355,7 @@ server <- function(input, output, session) {
     # Distance annotations
     # ----------------------------------------------------------
     
-    if (a != 1 && a != -1) {
+    {
       
       original_y <- max(fx) * 0.72
       
